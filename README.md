@@ -110,6 +110,13 @@ else:
 
 
 
+<img width="1919" height="1019" alt="image" src="https://github.com/user-attachments/assets/94299853-b48e-48e8-9912-a6d381664688" />
+
+
+
+
+
+
 - Observações (resistores, alimentação externa, níveis lógicos):
 
 
