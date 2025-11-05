@@ -22,6 +22,7 @@
 
 
 # max30102.py – Biblioteca simplificada para MicroPython
+
 import time
 from micropython import const
 
@@ -70,6 +71,41 @@ class MAX30102:
 
 <img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/c0056803-fe4c-45ed-9acb-35768cb9c72d" />
 
+# main.py — prueba básica del sensor MAX30102 (GY-MAX3010X)
+
+from machine import Pin, I2C
+import time
+from max30102 import MAX30102
+
+# --- Configurar bus I2C ---
+# BitDogLab / Pico: SDA=GP6, SCL=GP7
+i2c = I2C(1, scl=Pin(7), sda=Pin(6), freq=400000)
+
+print("🔍 Escaneando bus I2C...")
+devices = i2c.scan()
+print("Dispositivos encontrados:", devices)
+
+if 0x57 not in devices:
+    print("No se detectó el sensor MAX30102.")
+    print("Verifica conexiones: VIN→3V3, GND→GND, SDA→GP6, SCL→GP7")
+else:
+    print("Sensor detectado en dirección 0x57")
+
+    # --- Inicializar sensor ---
+    sensor = MAX30102(i2c)
+    if sensor.check_part_id():
+        print("ID correcto del chip MAX30102")
+    else:
+        print("Error: ID incorrecto (revisa conexiones o modelo)")
+
+    sensor.setup_sensor()
+    print("Leyendo valores RAW (RED e IR)... coloca el dedo sobre el sensor")
+
+    # --- Lectura continua ---
+    while True:
+        red, ir = sensor.read_sequential(1)
+        print("RED:", red[-1], "IR:", ir[-1])
+        time.sleep(0.5)
 
 
 
