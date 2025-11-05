@@ -12,8 +12,10 @@
 - Faixa de medição / resolução:
   Frequência cardíaca: 30–240 bpm
   SpO₂: 70–100 % (precisão ±2 %)
+  <img width="703" height="153" alt="image" src="https://github.com/user-attachments/assets/02be8f73-e8e9-4c44-8fd6-c87fac4d77dc" />
+
   
-- Datasheet (URL): MAX30102 Datasheet – Analog Devices (https://www.analog.com/media/en/technical-documentation/data-sheets/max30102.pdf?utm_source=chatgpt.com)
+- Datasheet (URL): MAX30102 Datasheet – Analog Devices 
 
 ## 2. Conexões de hardware
 - Tabela indicando as conexões entre BitDogLab e sensor:
