@@ -19,7 +19,6 @@
 
 ## 2. Conexões de hardware
 - Tabela indicando as conexões entre BitDogLab e sensor:
-  <img width="703" height="153" alt="image" src="https://github.com/user-attachments/assets/c4a4cf46-dfdc-47f6-acc3-99f2d5547fd5" />
 
 
 
