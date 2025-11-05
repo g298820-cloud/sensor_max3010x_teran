@@ -5,151 +5,18 @@ https://github.com/BitDogLab/BitDogLab/blob/main/softwares/I2C/teste%20e%20Scam%
 
 **Dupla:** Gustavo Santos Terán Rupay (298820 / @gustavosantosteran)  
 **Turma:** EA801 — 2025S2  
-**Repositório:** https://github.com/g298820-cloud/sensor_max3010x_teran
+**Repositório:** 
 
 ## 1. Descrição do sensor
-- Fabricante / modelo: GY-MAX3010X
-- Princípio de funcionamento: o sensor emite luz vermelha e infravermelha e mede a variação da luz refletida nos tecidos para estimar a pulsação e a saturação de oxigênio no sangue
-- Tensão/consumo típicos: 3,3 V a 5 V
-  
+- Fabricante / modelo: 
+- Princípio de funcionamento:
+- Tensão/consumo típicos: 
 - Faixa de medição / resolução:
-  Frequência cardíaca: 30–240 bpm
-  SpO₂: 70–100 % (precisão ±2 %)
-  <img width="703" height="153" alt="image" src="https://github.com/user-attachments/assets/02be8f73-e8e9-4c44-8fd6-c87fac4d77dc" />
-
-  
-- Datasheet (URL): MAX30102 Datasheet – Analog Devices 
+- Datasheet (URL): 
 
 ## 2. Conexões de hardware
 - Tabela indicando as conexões entre BitDogLab e sensor:
-
-
-# max30102.py – Biblioteca simplificada para MicroPython
-
-import time
-from micropython import const
-
-_MAX30102_ADDR = const(0x57)
-_PART_ID = const(0xFF)
-_EXPECTED_PART_ID = const(0x15)
-_REG_INTR_STATUS_1 = const(0x00)
-_REG_INTR_STATUS_2 = const(0x01)
-_REG_FIFO_WR_PTR = const(0x04)
-_REG_FIFO_RD_PTR = const(0x06)
-_REG_FIFO_DATA = const(0x07)
-_REG_MODE_CONFIG = const(0x09)
-_REG_SPO2_CONFIG = const(0x0A)
-_REG_LED1_PA = const(0x0C)
-_REG_LED2_PA = const(0x0D)
-_REG_MULTI_LED_CTRL1 = const(0x11)
-_REG_MULTI_LED_CTRL2 = const(0x12)
-_REG_TEMP_INT = const(0x1F)
-_REG_TEMP_FRAC = const(0x20)
-
-class MAX30102:
-    def __init__(self, i2c, addr=_MAX30102_ADDR):
-        self.i2c = i2c
-        self.addr = addr
-
-    def check_part_id(self):
-        part_id = self.i2c.readfrom_mem(self.addr, _PART_ID, 1)[0]
-        return part_id == _EXPECTED_PART_ID
-
-    def setup_sensor(self):
-        self.i2c.writeto_mem(self.addr, _REG_MODE_CONFIG, b'\x03')
-        self.i2c.writeto_mem(self.addr, _REG_SPO2_CONFIG, b'\x27')
-        self.i2c.writeto_mem(self.addr, _REG_LED1_PA, b'\x24')
-        self.i2c.writeto_mem(self.addr, _REG_LED2_PA, b'\x24')
-
-    def read_sequential(self, n=1):
-        red_buf = []
-        ir_buf = []
-        for _ in range(n):
-            data = self.i2c.readfrom_mem(self.addr, _REG_FIFO_DATA, 6)
-            red = (data[0]<<16 | data[1]<<8 | data[2]) & 0x3FFFF
-            ir = (data[3]<<16 | data[4]<<8 | data[5]) & 0x3FFFF
-            red_buf.append(red)
-            ir_buf.append(ir)
-        return red_buf, ir_buf
-
-<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/c0056803-fe4c-45ed-9acb-35768cb9c72d" />
-
-# main.py — prueba básica del sensor MAX30102 (GY-MAX3010X)
-
-from machine import Pin, I2C
-import time
-from max30102 import MAX30102
-
-# --- Configurar bus I2C ---
-# BitDogLab / Pico: SDA=GP6, SCL=GP7
-i2c = I2C(1, scl=Pin(7), sda=Pin(6), freq=400000)
-
-print("🔍 Escaneando bus I2C...")
-devices = i2c.scan()
-print("Dispositivos encontrados:", devices)
-
-if 0x57 not in devices:
-    print("No se detectó el sensor MAX30102.")
-    print("Verifica conexiones: VIN→3V3, GND→GND, SDA→GP6, SCL→GP7")
-else:
-    print("Sensor detectado en dirección 0x57")
-
-    # --- Inicializar sensor ---
-    sensor = MAX30102(i2c)
-    if sensor.check_part_id():
-        print("ID correcto del chip MAX30102")
-    else:
-        print("Error: ID incorrecto (revisa conexiones o modelo)")
-
-    sensor.setup_sensor()
-    print("Leyendo valores RAW (RED e IR)... coloca el dedo sobre el sensor")
-
-    # --- Lectura continua ---
-    while True:
-        red, ir = sensor.read_sequential(1)
-        print("RED:", red[-1], "IR:", ir[-1])
-        time.sleep(0.5)
-
-
-
-
-<img width="1919" height="1019" alt="image" src="https://github.com/user-attachments/assets/94299853-b48e-48e8-9912-a6d381664688" />
-
-
-
-from machine import Pin, I2C
-import time
-
-# BitDogLab → conector J6 (SDA = GP6, SCL = GP7)
-i2c = I2C(1, scl=Pin(7), sda=Pin(6), freq=400000)
-
-print("🔍 Escaneando bus I²C (conector J6, GP6/GP7)...")
-time.sleep(1)
-
-devices = i2c.scan()
-
-if devices:
-    print("✅ Dispositivos detectados:", [hex(d) for d in devices])
-else:
-    print("⚠️ No se detectó ningún dispositivo I²C.")
-    print("Verifica:")
-    print(" - VIN → 3V3")
-    print(" - GND → GND")
-    print(" - SDA → GP6 (azul)")
-    print(" - SCL → GP7 (amarillo)")
-
-
-
-
-
-
-
-
-
 - Observações (resistores, alimentação externa, níveis lógicos):
-
-
-
 
 **Tabela de conexões (imagem em `docs/`):**  
 ![conexoes](docs/conexoes.jpg)
