@@ -5,7 +5,7 @@ https://github.com/BitDogLab/BitDogLab/blob/main/softwares/I2C/teste%20e%20Scam%
 
 **Dupla:** Gustavo Santos Terán Rupay (298820 / @gustavosantosteran)  
 **Turma:** EA801 — 2025S2  
-**Repositório:** [sensor_AHT10_teran](https://github.com/g298820-cloud/sensor_AHT10_teran)
+**Repositório:** 
 
 ## 1. Descrição do sensor
 - Fabricante / modelo: Aosong (ASAIR) AHT10 
@@ -16,7 +16,7 @@ https://github.com/BitDogLab/BitDogLab/blob/main/softwares/I2C/teste%20e%20Scam%
   Temperatura: –40 °C – 85 °C (±0.3 °C típico)
   Resolução: 0.024 % RH / 0.01 °C
   
-- Datasheet (URL): https://server4.eca.ir/eshop/AHT10/Aosong_AHT10_en_draft_0c.pdf](https://server4.eca.ir/eshop/AHT10/Aosong_AHT10_en_draft_0c.pdf
+- Datasheet (URL): [https://server4.eca.ir/eshop/AHT10/Aosong_AHT10_en_draft_0c.pdf]
 
 ## 2. Conexões de hardware
 - Tabela indicando as conexões entre BitDogLab e sensor:
@@ -26,7 +26,8 @@ https://github.com/BitDogLab/BitDogLab/blob/main/softwares/I2C/teste%20e%20Scam%
 - Observações (resistores, alimentação externa, níveis lógicos):
   É recomendado o uso de resistores de pull-up (4.7 kΩ – 10 kΩ) nos pinos SDA e SCL. 
   A comunicação segue o protocolo I²C padrão (100 kHz – 400 kHz).
-**Tabela de conexões (imagem em `docs/`):**  
+**Tabela de conexões (imagem em `docs/`):**
+  
 ![conexoes](docs/conexoes.jpg)
 
 ## 3. Dependências
