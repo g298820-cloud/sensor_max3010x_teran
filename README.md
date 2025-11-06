@@ -28,7 +28,8 @@ https://github.com/BitDogLab/BitDogLab/blob/main/softwares/I2C/teste%20e%20Scam%
   A comunicação segue o protocolo I²C padrão (100 kHz – 400 kHz).
 **Tabela de conexões (imagem em `docs/`):**
 
-![Conexões do sensor AHT10](docs/9ec0ce30-00dc-4575-a1f1-06a74b1cea4d.png)
+![Conexões do sensor AHT10](docs/f4132ecd-f605-4674-83c3-de0eb1b0fa0a.png)
+
 
 ## 3. Dependências
 - MicroPython/C versão:
