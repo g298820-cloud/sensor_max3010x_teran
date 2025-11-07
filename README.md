@@ -120,6 +120,9 @@ https://github.com/BitDogLab/BitDogLab/blob/main/softwares/I2C/teste%20e%20Scam%
 ## 6. Resultados e validação
 - Prints/plots, fotos do setup, limitações, ruídos, dicas.
 
+<img width="536" height="404" alt="image" src="https://github.com/user-attachments/assets/b9346b2f-9520-48ab-9c83-a8e053216a60" />
+
+
 Durante os testes, o sensor AHT10 foi corretamente reconhecido pelo barramento I²C no endereço 0x38, enquanto o display SSD1306 respondeu no endereço 0x3C.
 As leituras de temperatura e umidade foram exibidas simultaneamente no terminal do Thonny e no display OLED.
 
@@ -131,6 +134,11 @@ As leituras de temperatura e umidade foram exibidas simultaneamente no terminal 
 
 -Alimentação de 3.3 V
 
+Limitações observadas:
+
+Pequenas flutuações (±0.3 °C / ±2 % RH) atribuídas à circulação de ar e à precisão do sensor.
+
+O tempo de estabilização inicial do AHT10 (~1 s) deve ser considerado após energização.
 
 
 
