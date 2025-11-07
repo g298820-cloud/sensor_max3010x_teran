@@ -21,7 +21,7 @@ https://github.com/BitDogLab/BitDogLab/blob/main/softwares/I2C/teste%20e%20Scam%
 ## 2. Conexões de hardware
 - Tabela indicando as conexões entre BitDogLab e sensor:
   
- <img width= "1284" height= "700" alt="image" src="https://github.com/user-attachments/assets/78069fca-60f1-448d-8015-2f14f903a7de" />
+ <img width= "800" height= "1400" alt="image" src="https://github.com/user-attachments/assets/78069fca-60f1-448d-8015-2f14f903a7de" />
 
   <img width="1130" height="558" alt="image" src="https://github.com/user-attachments/assets/f3db34bd-29a3-407c-8a48-95ad635cbc58" />
 
