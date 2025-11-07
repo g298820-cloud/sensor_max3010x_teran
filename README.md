@@ -118,6 +118,23 @@ https://github.com/BitDogLab/BitDogLab/blob/main/softwares/I2C/teste%20e%20Scam%
 ## 6. Resultados e validação
 - Prints/plots, fotos do setup, limitações, ruídos, dicas.
 
+Durante os testes, o sensor AHT10 foi corretamente reconhecido pelo barramento I²C no endereço 0x38, enquanto o display SSD1306 respondeu no endereço 0x3C.
+As leituras de temperatura e umidade foram exibidas simultaneamente no terminal do Thonny e no display OLED.
+
+-Placa BitDogLab (RP2040)
+
+-Sensor AHT10 conectado via I²C1 (SDA = GP14, SCL = GP15)
+
+-Display SSD1306 conectado via I²C0 (SDA = GP0, SCL = GP1)
+
+-Alimentação de 3.3 V
+
+como se observa:
+
+
+
+
+
 ## 7. Licença
 - Ver arquivo `LICENSE`.
 
