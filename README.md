@@ -5,7 +5,7 @@ https://github.com/BitDogLab/BitDogLab/blob/main/softwares/I2C/teste%20e%20Scam%
 
 **Dupla:** Gustavo Santos Terán Rupay (298820 / @gustavosantosteran)  
 **Turma:** EA801 — 2025S2  
-**Repositório:** 
+**Repositório:** https://github.com/g298820-cloud/sensor_aht10_teran
 
 ## 1. Descrição do sensor
 - Fabricante / modelo: Aosong (ASAIR) AHT10 
@@ -26,19 +26,20 @@ https://github.com/BitDogLab/BitDogLab/blob/main/softwares/I2C/teste%20e%20Scam%
 - Observações (resistores, alimentação externa, níveis lógicos):
   É recomendado o uso de resistores de pull-up (4.7 kΩ – 10 kΩ) nos pinos SDA e SCL. 
   A comunicação segue o protocolo I²C padrão (100 kHz – 400 kHz).
+  
 **Tabela de conexões (imagem em `docs/`):**
 
 ![Conexões do sensor AHT10](‎docs/conexoes_aht10.jpg)
 
 ## 3. Dependências
 - MicroPython/C versão:
-  **Placa:** BitDogLab (Raspberry Pi Pico W / RP2040)
-  **Firmware:** MicroPython v1.22.1 ou superior
-  **IDE:** Thonny (versão igual ou superior 4.1.0)
+  Placa: BitDogLab (Raspberry Pi Pico W / RP2040)
+  Firmware: MicroPython v1.22.1 ou superior
+  IDE: Thonny (versão igual ou superior 4.1.0)
   
 - Bibliotecas utilizadas:
   machine (interna) : Pin, I2C 
-  time (interna) 
+  time (interna) : sleep_ms
   ssd1306 (externa) : SSD1306_I2C
   O projeto utiliza tanto módulos nativos do MicroPython quanto uma biblioteca externa para o display OLED.
     
@@ -54,22 +55,53 @@ https://github.com/BitDogLab/BitDogLab/blob/main/softwares/I2C/teste%20e%20Scam%
 ```bash
 # MicroPython (Thonny): copiar src/main.py para a placa e rodar
 
+1. Conecte a placa BitDogLab via USB.
 
+2. Carregue os arquivos para a placa:
+   - Copie o arquivo `ssd1306.py` para a pasta `/lib/` da placa.  
+   - Copie os scripts de teste (`i2c_scan.py`, `i2c_scan_oled.py` e `aht10_prueba_2.py`) para a
+     pastaprincipal da placa ou dentro de `/src/`.
 
+3. **Etapa1** – Verificar dispositivos I²C:
+   - Execute o arquivo `i2c_scan.py` no Thonny.  
+   - O terminal exibirá os endereços detectados,
+     como:
+     Dispositivo encontrado no endereço: 0x38
+     Dispositivo encontrado no endereço: 0x3C
 
+     Confirmando que o AHT10 (0x38) e o SSD1306 (0x3C) estão sendo reconhecidos corretamente.
 
+4. **Etapa2** – Testar exibição no OLED:
+   - Execute `i2c_scan_oled.py`.  
+   - Os endereços detectados aparecerão **diretamente no display OLED**, validando a comunicação I²C com      o módulo.
 
+5. **Etapa3** – Rodar o código principal:
+   - Execute `aht10_prueba_2.py`.  
+   - O programa fará a leitura contínua dos valores de temperatura e umidade do **AHT10** e exibirá:
+   - No terminal do Thonny:
+       Temperatura: 23.0 °C
+       Umidade: 61.5 %
+   - No display OLED SSD1306, com atualização automática a cada 2 segundos.
 
-```
 
 ## 5. Exemplos de uso
-- `src/i2c_scan.py`
+
+- `src/i2c_scan.py` (teste)
   
   realiza a varredura dos dispositivos I²C conectados nos barramentos I2C0 e I2C1,
   exibindo no terminal os endereços detectados (0x38, 0x3c, 0x40).
   Utilizado para confirmar o reconhecimento do sensor AHT10 e do display OLED.
 
-- `src/i2c_scan_oled.py`
+- `src/ssd1306.py`
+  Biblioteca que implementa todas as funções de controle do display
+  OLED SSD1306 via protocolo I²C.
+  Inclui métodos como fill(), text(), pixel(), e show() que permitem desenhar,
+  escrever texto e atualizar o conteúdo da tela.
+  Esta biblioteca é utilizada pelos demais scripts (como i2c_scan_oled.py e
+  aht_prueba_2.py) para exibir informações em tempo real no display OLED conectado ao
+  BitDogLab.
+
+- `src/i2c_scan_oled.py` (teste)
   
   mostra no display OLED SSD1306 os endereços I²C detectados nos dois barramentos.
   Serve para testar a comunicação entre o microcontrolador RP2040 e o módulo OLED,
@@ -82,27 +114,6 @@ https://github.com/BitDogLab/BitDogLab/blob/main/softwares/I2C/teste%20e%20Scam%
   Exemplo final de integração entre sensor e display, com leituras estáveis como
   23.0 °C e 61.5 % atualizadas a cada 2 segundos.
   
-- `test/`
-  contém scripts auxiliares de diagnóstico para testar a comunicação I²C e verificar
-  a integridade do barramento e dos sensores conectados.
-
-
-  
-
-from machine import Pin, I2C
-
-i2c0 = I2C(0, scl=Pin(1), sda=Pin(0), freq=400000)
-i2c1 = I2C(1, scl=Pin(3), sda=Pin(2), freq=400000)
-devices0 = i2c0.scan()
-devices1 = i2c1.scan()
-print("Endereços dos dispositivos I2C conectados:")
-print("I2C0:")
-for device in devices0:
-    print("   ",hex(device))
-print("I2C1:")
-for device in devices1:
-    print("   ",hex(device))
-
 
 ## 6. Resultados e validação
 - Prints/plots, fotos do setup, limitações, ruídos, dicas.
@@ -110,7 +121,8 @@ for device in devices1:
 ## 7. Licença
 - Ver arquivo `LICENSE`.
 
----
+MIT License
+Copyright (c) 2025 Gustavo Santos Terán Rupay
 
 > **Checklist de entrega**
 > - [ ] README preenchido  
