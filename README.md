@@ -21,13 +21,13 @@ https://github.com/BitDogLab/BitDogLab/blob/main/softwares/I2C/teste%20e%20Scam%
 ## 2. Conexões de hardware
 - Tabela indicando as conexões entre BitDogLab e sensor:
   
- <img width= "800" height= "1400" alt="image" src="https://github.com/user-attachments/assets/78069fca-60f1-448d-8015-2f14f903a7de" />
+ <img width= "500" height= "1200" alt="image" src="https://github.com/user-attachments/assets/78069fca-60f1-448d-8015-2f14f903a7de" />
 
   <img width="1130" height="558" alt="image" src="https://github.com/user-attachments/assets/f3db34bd-29a3-407c-8a48-95ad635cbc58" />
 
 - Observações (resistores, alimentação externa, níveis lógicos):
-  É recomendado o uso de resistores de pull-up (4.7 kΩ – 10 kΩ) nos pinos SDA e SCL. 
-  A comunicação segue o protocolo I²C padrão (100 kHz – 400 kHz).
+  O protocolo I²C requer resistores de pull-up nas linhas SDA e SCL (tipicamente entre 4.7 kΩ e 10 kΩ).
+  O módulo AHT10 já possui esses resistores integrados na placa, portanto não é necessário adicioná-los    externamente ao usar a BitDogLab.
   
 **Tabela de conexões (imagem em `docs/`):**
 
