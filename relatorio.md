@@ -48,29 +48,29 @@ Se aplicável, descreva o esquema de ligação elétrica, o protocolo de comunic
 <img width="346" height="459" alt="image" src="https://github.com/user-attachments/assets/38c67d2f-8ae0-4069-9f40-2f90ea54808c" />
 
 
-O funcionamento geral do sistema é representado no diagrama de blocos da Figura X, que descreve o fluxo de dados desde as medições físicas realizadas pelo sensor AHT10 até a exibição final dos resultados no display OLED e no terminal serial.
+O funcionamento geral do sistema é representado no diagrama de blocos, que descreve o fluxo de dados desde as medições físicas realizadas pelo sensor AHT10 até a exibição final dos resultados no display OLED e no terminal serial.
 
-O sistema é dividido em módulos funcionais integrados via barramentos digitais, conforme descrito a seguir:
+O sistema é dividido em módulos funcionais integrados via barramentos digitais
 
-Ambiente: representa o meio físico onde são medidas as variáveis de temperatura (T) e umidade relativa (UR).
+-Ambiente: representa o meio físico onde são medidas as variáveis de temperatura (T) e umidade relativa (UR).
 
-Sensor AHT10: converte as grandezas físicas do ambiente em sinais digitais utilizando conversão analógico-digital interna. A comunicação é feita via protocolo I²C, no endereço 0x38.
+-Sensor AHT10: converte as grandezas físicas do ambiente em sinais digitais utilizando conversão analógico-digital interna. A comunicação é feita via protocolo I²C, no endereço 0x38.
 
-Comunicação I²C1: o sensor AHT10 é conectado à BitDogLab por meio do barramento I²C1 (SDA = GP14, SCL = GP15), transmitindo os dados digitais para o microcontrolador RP2040.
+-Comunicação I²C0: o sensor AHT10 é conectado à BitDogLab por meio do barramento I²C0 (SDA = GP0, SCL = GP1), transmitindo os dados digitais para o microcontrolador RP2040.
 
-Processamento (RP2040 – BitDogLab): o microcontrolador processa os dados recebidos, aplica as fórmulas de conversão para °C e %RH e atualiza as saídas (display OLED e terminal serial).
+-Processamento (RP2040 – BitDogLab): o microcontrolador processa os dados recebidos, aplica as fórmulas de conversão para °C e %UR e atualiza as saídas (display OLED e terminal serial).
 
-Controle: uma rotina de temporização (time.sleep(2)) define o intervalo entre leituras, garantindo atualização contínua e estável a cada 2 segundos.
+-Controle: uma rotina de temporização (time.sleep(2)) define o intervalo entre leituras, garantindo atualização contínua e estável a cada 2 segundos.
 
-Comunicação I²C0: o display OLED SSD1306 está conectado ao barramento I²C0 (SDA = GP0, SCL = GP1) para exibir as medições processadas.
+-Comunicação I²C1: o display OLED SSD1306 está conectado ao barramento I²C1 (SDA = GP14, SCL = GP15) para exibir as medições processadas.
 
-Display OLED: apresenta em tempo real os valores de temperatura e umidade processados, utilizando a biblioteca externa ssd1306.py.
+-Display OLED: apresenta em tempo real os valores de temperatura e umidade processados, utilizando a biblioteca externa ssd1306.py.
 
-Terminal Serial (Thonny IDE): exibe os mesmos dados em formato de texto via porta USB, permitindo depuração e monitoramento das leituras.
+-Terminal Serial (Thonny IDE): exibe os mesmos dados em formato de texto via porta USB, permitindo depuração e monitoramento das leituras.
 
-Saída final: os resultados são exibidos simultaneamente no display e no terminal, com atualização contínua a cada 2 segundos.
+-Saída final: os resultados são exibidos simultaneamente no display e no terminal, com atualização contínua a cada 2 segundos.
 
-Essa arquitetura modular garante simplicidade, estabilidade e clareza no fluxo de dados, desde a aquisição até a exibição final das medições.
+-Essa arquitetura modular garante simplicidade, estabilidade e clareza no fluxo de dados, desde a aquisição até a exibição final das medições.
 
 
 
@@ -120,6 +120,7 @@ Indique aprimoramentos possíveis e oportunidades de extensão do trabalho, incl
 ## 6. Referências
 Liste as fontes técnicas e documentações consultadas, como datasheets, manuais de aplicação, artigos ou links de bibliotecas utilizadas.  
 O formato de citação é livre, desde que contenha autor, título e origem.
+
 
 
 
