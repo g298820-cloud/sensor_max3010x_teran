@@ -50,34 +50,29 @@ https://github.com/BitDogLab/BitDogLab/blob/main/softwares/I2C/teste%20e%20Scam%
 
 1. **Baixar a biblioteca externa `ssd1306.py`**
    - Acesse o link abaixo e salve o arquivo no seu computador:
-     [https://raw.githubusercontent.com/stlehmann/micropython-ssd1306/master/ssd1306.py](https://raw.githubusercontent.com/stlehmann/micropython-ssd1306/master/ssd1306.py)
+     https://raw.githubusercontent.com/stlehmann/micropython-ssd1306/master/ssd1306.py
 
 2. **Abrir o Thonny IDE**
    - Conecte a placa **BitDogLab (Raspberry Pi Pico W / RP2040)** via cabo USB.
    - Certifique-se de que o Thonny reconheceu a placa (no canto inferior direito deve aparecer “MicroPython (Raspberry Pi Pico)”).
 
 3. **Enviar a biblioteca para a placa**
-   - No menu do Thonny, clique em **Arquivo → Abrir...** e selecione o arquivo `ssd1306.py` baixado.
-   - Clique em **Salvar como... → No dispositivo MicroPython**.
-   - Salve o arquivo dentro da pasta `/src/` (ou diretamente na raiz da placa).
+   - No menu do Thonny, clique em Arquivo → Abrir e selecione o arquivo `ssd1306.py` baixado.
+   - Salve o arquivo dentro da pasta `/src/`.
 
 4. **Verificar instalação**
    - Execute o comando abaixo no terminal do Thonny:
-     ```python
+     python
      import ssd1306
-     ```
      Se não ocorrer erro, a biblioteca foi instalada corretamente.
 
 5. **Testar a comunicação**
    - Execute o script `i2c_scan.py` para verificar se o endereço do display OLED (0x3C) aparece.
    - Caso positivo, o display está pronto para uso nos testes do projeto.
 
-
-  ssd1306 (externa) OLED
-  https://raw.githubusercontent.com/stlehmann/micropython-ssd1306/master/ssd1306.py
-
 ## 4. Como executar
-```bash
+
+bash
 # MicroPython (Thonny): copiar src/main.py para a placa e rodar
 
 1. Conecte a placa BitDogLab via USB.
@@ -132,7 +127,7 @@ a pasta principal da placa ou dentro de `/src/`.
   Serve para testar a comunicação entre o microcontrolador RP2040 e o módulo OLED,
   exibindo o resultado diretamente na tela.
   
-- `src/aht10_prueba_2.py`
+- `src/aht10_prueba_2.py`(Código principal (MicroPython))
    
   Lê continuamente os dados de temperatura e umidade do sensor
   AHT10, mostrando os valores em tempo real tanto no terminal quanto no display OLED.
@@ -145,23 +140,59 @@ a pasta principal da placa ou dentro de `/src/`.
 
 <img width="536" height="404" alt="image" src="https://github.com/user-attachments/assets/b9346b2f-9520-48ab-9c83-a8e053216a60" />
 
+Entorno de prueba
+- Placa: BitDogLab (RP2040, MicroPython)
+- Buses I²C usados:
+  - I²C0 → AHT10 (SCL = GP1, SDA = GP0, 400 kHz)
+  - I²C1 → OLED SSD1306 (SCL = GP3, SDA = GP2, 400 kHz)
+- Alimentación: 3.3 V de la propia BitDogLab
+- Condiciones: ambiente estable (aula/laboratorio) sin control de humedad.
 
-Durante os testes, o sensor AHT10 foi corretamente reconhecido pelo barramento I²C no endereço 0x38, enquanto o display SSD1306 respondeu no endereço 0x3C.
-As leituras de temperatura e umidade foram exibidas simultaneamente no terminal do Thonny e no display OLED.
+Detección de dispositivos (escáner I²C)
+- Dirección del AHT10: 0x38
+- Dirección del SSD1306: 0x3C
+- Comprobado con los scripts src/i2c_scan.py y src/i2c_scan_oled.py.
 
--Placa BitDogLab (RP2040)
+Lecturas típicas (código principal src/aht10_prueba_2.py)
+- Muestras observadas en operación continua (actualización cada ~2 s):
+  - Temperatura: 23.0–23.2 °C
+  - Humedad relativa: 56–62 % RH
+  - Lecturas de ~57 % RH son normales para interiores ventilados.
+- Visualización simultánea en:
+  - Terminal de Thonny (registro en tiempo real).
+  - Display OLED SSD1306 (con actualización automática).
 
--Sensor AHT10 conectado via I²C1 (SDA = GP14, SCL = GP15)
+Ruido y estabilidad
+- Script: test/test_ruido.py (usa promediado de ventana móvil).
+- Resultados:
+  - Variación típica: ±0.1–0.2 °C / ±1–2 % RH.
+  - Estabilización completa tras ~1 segundo de encendido.
+  - Promediar 5 lecturas reduce el jitter y suaviza la visualización.
 
--Display SSD1306 conectado via I²C0 (SDA = GP0, SCL = GP1)
+Evidencias (/docs/)
+- Escaneo y lectura básica: Prueba_basica.png
+- Prueba de ruido: prueba_ruidoo.png
+- Foto del montaje: Mostra_dados.JPG
+- Video de demostración: video_mostra.MOV
 
--Alimentação de 3.3 V
+Limitaciones
+- Las variaciones de humedad dependen del ambiente (personas, ventilación, etc.).
+- Precisión típica del sensor: ±0.3 °C / ±2 % RH.
+- Tiempo de respuesta ante cambios bruscos: varios segundos.
 
-Limitações observadas:
+Reproducibilidad
+1. Ejecutar src/i2c_scan.py → verificar 0x38 (AHT10) y 0x3C (OLED).
+2. Ejecutar src/i2c_scan_oled.py → confirmar visualización en pantalla.
+3. Ejecutar src/aht10_prueba_2.py → lecturas en OLED y terminal.
+4. (Opcional) Ejecutar test/test_ruido.py → analizar estabilidad.
 
-Pequenas flutuações (±0.3 °C / ±2 % RH) atribuídas à circulação de ar e à precisão do sensor.
+Conclusión
+El sistema integrando el AHT10 y el display OLED SSD1306 funcionó correctamente, mostrando lecturas estables de temperatura y humedad. Las mediciones concuerdan con condiciones reales de laboratorio y se validó la comunicación I²C entre ambos módulos sin errores.
 
-O tempo de estabilização inicial do AHT10 (~1 s) deve ser considerado após energização.
+<img width="432" height="637" alt="image" src="https://github.com/user-attachments/assets/83f9ab5a-6eca-4900-923d-7b0838a7deeb" />
+
+
+
 
 
 
