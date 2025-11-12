@@ -72,7 +72,7 @@ O sistema é dividido em módulos funcionais integrados via barramentos digitais
 
 **2.2 Bibliotecas Utilizadas**
 
-    machine – para controle dos periféricos (I2C, Pin)
+    machine para controle dos periféricos (I2C, Pin)
 
     time para temporização entre leituras
 
@@ -88,9 +88,9 @@ Durante o desenvolvimento, foram utilizadas leituras simultâneas no terminal se
 A variação típica observada foi de ±0.3 °C em temperatura e ±2 %UR em umidade, valores compatíveis com as especificações do sensor.
 A calibração não foi necessária, visto que o AHT10 possui compensação interna de temperatura e umidade.
 
-**2.4 Flujo lógico**
+**2.4 Protocolo de comunicação e fluxo lógico**
 
-<img width="478" height="644" alt="image" src="https://github.com/user-attachments/assets/d15cc9cd-6a89-4329-8b70-593f13313e9c" />
+<img width="278" height="444" alt="image" src="https://github.com/user-attachments/assets/d15cc9cd-6a89-4329-8b70-593f13313e9c" />
 
 **Sequência lógica**
 
@@ -115,7 +115,6 @@ A calibração não foi necessária, visto que o AHT10 possui compensação inte
 
 
 
----
 
 ## 3. Resultados e Análise
 Apresente os principais resultados obtidos, acompanhados de gráficos, tabelas ou imagens que sustentem a análise.  
@@ -154,6 +153,7 @@ Indique aprimoramentos possíveis e oportunidades de extensão do trabalho, incl
 ## 6. Referências
 Liste as fontes técnicas e documentações consultadas, como datasheets, manuais de aplicação, artigos ou links de bibliotecas utilizadas.  
 O formato de citação é livre, desde que contenha autor, título e origem.
+
 
 
 
