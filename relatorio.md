@@ -3,7 +3,7 @@
 Disciplina: EA801 — Sistemas Embarcados
 Dupla: Gustavo Santos Terán Rupay (RA: 298820 / @g298820@g.unicamp.br)
 Período: 2025S2
-Placa: BitDogLab (Raspberry Pi Pico W / RP2040)
+Placa: BitDogLab (Raspberry Pi Pico / RP2040)
 Sensor: AHT10 — Sensor de Umidade e Temperatura
 
 ## 1. Escopo
@@ -54,15 +54,15 @@ O sistema é dividido em módulos funcionais integrados via barramentos digitais
 
 -Ambiente: representa o meio físico onde são medidas as variáveis de temperatura (T) e umidade relativa (UR).
 
--Sensor AHT10: converte as grandezas físicas do ambiente em sinais digitais utilizando conversão analógico-digital interna. A comunicação é feita via protocolo I²C, no endereço 0x38.
+-Sensor AHT10: converte as grandezas físicas do ambiente em sinais digitais utilizando conversão analógico-digital interna. A comunicação é feita via protocolo I2C, no endereço 0x38.
 
--Comunicação I²C0: o sensor AHT10 é conectado à BitDogLab por meio do barramento I²C0 (SDA = GP0, SCL = GP1), transmitindo os dados digitais para o microcontrolador RP2040.
+-Comunicação I2C0: o sensor AHT10 é conectado à BitDogLab por meio do barramento I2C0 (SDA = GP0, SCL = GP1), transmitindo os dados digitais para o microcontrolador RP2040.
 
--Processamento (RP2040 – BitDogLab): o microcontrolador processa os dados recebidos, aplica as fórmulas de conversão para °C e %UR e atualiza as saídas (display OLED e terminal serial).
+-Processamento (RP2040): o microcontrolador processa os dados recebidos, aplica as fórmulas de conversão para °C e %UR e atualiza as saídas (display OLED e terminal serial).
 
 -Controle: uma rotina de temporização (time.sleep(2)) define o intervalo entre leituras, garantindo atualização contínua e estável a cada 2 segundos.
 
--Comunicação I²C1: o display OLED SSD1306 está conectado ao barramento I²C1 (SDA = GP14, SCL = GP15) para exibir as medições processadas.
+-Comunicação I²C1: o display OLED SSD1306 está conectado ao barramento I2C1 (SDA = GP14, SCL = GP15) para exibir as medições processadas.
 
 -Display OLED: apresenta em tempo real os valores de temperatura e umidade processados, utilizando a biblioteca externa ssd1306.py.
 
@@ -76,7 +76,7 @@ O sistema é dividido em módulos funcionais integrados via barramentos digitais
 
     time para temporização entre leituras
 
-    ssd1306 é biblioteca externa para o controle do display OLED via I²C
+    ssd1306 é biblioteca externa para o controle do display OLED via I2C
 
     Funções internas do arquivo aht10_prueba_2.py implementam a comunicação e cálculo de             temperatura e umidade.
 
@@ -153,6 +153,7 @@ Indique aprimoramentos possíveis e oportunidades de extensão do trabalho, incl
 ## 6. Referências
 Liste as fontes técnicas e documentações consultadas, como datasheets, manuais de aplicação, artigos ou links de bibliotecas utilizadas.  
 O formato de citação é livre, desde que contenha autor, título e origem.
+
 
 
 
