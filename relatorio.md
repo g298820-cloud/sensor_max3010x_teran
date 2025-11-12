@@ -114,7 +114,9 @@ O esquema de ligação elétrica representa as conexões entre o sensor AHT10, a
 <img width="637" height="358" alt="image" src="https://github.com/user-attachments/assets/dd093a6f-b9b7-4e9a-a57a-c5db43254197" />
 
 **Descrição do Circuito**
+
 -O sensor AHT10 comunica-se com o microcontrolador via barramento I²C0, enquanto o display OLED utiliza o barramento I²C1. Ambos os módulos compartilham a mesma alimentação de 3.3 V proveniente da BitDogLab. As linhas SDA e SCL são utilizadas para transmissão de dados e sincronização, respectivamente.
+
 -O AHT10 converte a umidade e temperatura em sinais digitais, que são lidos pelo RP2040. Em seguida, o microcontrolador envia as informações processadas ao display SSD1306 para exibição. A taxa de atualização é controlada por temporização no código (time.sleep(2)).
 
 
@@ -155,6 +157,7 @@ Indique aprimoramentos possíveis e oportunidades de extensão do trabalho, incl
 ## 6. Referências
 Liste as fontes técnicas e documentações consultadas, como datasheets, manuais de aplicação, artigos ou links de bibliotecas utilizadas.  
 O formato de citação é livre, desde que contenha autor, título e origem.
+
 
 
 
