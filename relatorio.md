@@ -20,21 +20,29 @@ real no display OLED SSD1306, através da comunicação I2C.
 **Os objetivos específicos**
 
 -Implementar a comunicação correta entre o AHT10 e o microcontrolador RP2040 via protocolo I2C.
+
 -Exibir continuamente os valores de temperatura e umidade no terminal e no display OLED.
+
 -Validar o funcionamento do sistema por meio de scripts de teste (test_basico.py e test_ruido.py).
+
 -Avaliar a estabilidade das leituras, observando variações naturais e possíveis ruídos.
 
 **O trabalho procura consolidar o entendimento dos seguintes conceitos técnicos:**
 
 -Configuração e utilização de múltiplos barramentos I2C em sistemas embarcados.
+
 -Leitura de sensores digitais e interpretação de dados binários.
+
 -Controle e atualização de um display gráfico (SSD1306) utilizando bibliotecas externas em MicroPython.
+
 -Estruturação modular do código, com arquivos principais e scripts de teste.
 
 **Os critérios de sucesso considerados para validação**
 
 -Detecção do sensor AHT10 no endereço 0x38 e do display OLED no endereço 0x3C durante o escaneamento I2C.
+
 -Exibição correta e contínua das medições no terminal e no OLED, com atualização a cada 2 segundos.
+
 -Estabilidade das leituras com variação máxima de ±0.3 °C para temperatura e ±2 %RH para umidade.
 
 ## 2. Metodologia e Implementação
@@ -254,6 +262,7 @@ Disponível em: https://github.com/BitDogLab/BitDogLab/blob/main/softwares/I2C/t
 
 [4] Raspberry Pi Foundation, “RP2040 Microcontroller Documentation”, 2023.
 Disponível em: https://www.raspberrypi.com/documentation/microcontrollers/
+
 
 
 
