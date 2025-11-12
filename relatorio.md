@@ -132,8 +132,22 @@ Discuta o comportamento observado, eventuais desvios em relação ao esperado e 
 
 <img width="268" height="492" alt="image" src="https://github.com/user-attachments/assets/55db78b0-5546-49ca-ac6a-721d9b013855" />
 
-
 <img width="292" height="482" alt="image" src="https://github.com/user-attachments/assets/793dab73-6816-4068-9442-2dc7be6d0710" />
+
+Durante os testes realizados com o sensor AHT10 conectado à BitDogLab, o sistema demonstrou comunicação I²C estável com o microcontrolador RP2040, exibindo os valores de temperatura e umidade em tempo real no display OLED SSD1306.
+
+**Durante o funcionamento, observou-se:**
+
+-Tempo de estabilização inicial de cerca de 1 s após energização do sensor.
+-Pequenas flutuações (< ±2 %) atribuídas à variação natural do ar e à precisão do sensor.
+-Atualização contínua no OLED a cada 2 s, conforme definido no código principal (aht10_prueba_2.py).
+
+Grandeza          Valor Médio    Variação Observada         Faixa do Datasheet              
+
+Temperatura       20,7 °C           ±0,3 °C             –40 °C a 85 °C (±0,3 °C típico) 
+Umidade Relativa  57,1 % RH         ±2 % RH              0 – 100 % RH (±2 % RH típico)   
+
+**Esses valores estão em conformidade com o comportamento esperado para o AHT10, considerando as condições de temperatura ambiente (21-25 °C) e umidade relativa do ar em Campinas (55 – 60 %) no momento da medição.**
 
 
 
@@ -166,6 +180,7 @@ Indique aprimoramentos possíveis e oportunidades de extensão do trabalho, incl
 ## 6. Referências
 Liste as fontes técnicas e documentações consultadas, como datasheets, manuais de aplicação, artigos ou links de bibliotecas utilizadas.  
 O formato de citação é livre, desde que contenha autor, título e origem.
+
 
 
 
