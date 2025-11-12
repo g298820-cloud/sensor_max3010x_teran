@@ -108,23 +108,14 @@ A calibração não foi necessária, visto que o AHT10 possui compensação inte
 
 **2.5 Esquema de ligação elétrica**
 
-O esquema de ligação elétrica representa as conexões entre o sensor AHT10, a placa BitDogLab (baseada no microcontrolador RP2040) e o display OLED SSD1306. A comunicação entre os dispositivos é realizada por meio do protocolo I²C, garantindo simplicidade e eficiência na troca de dados digitais.
+O esquema de ligação elétrica representa as conexões entre o sensor AHT10, a placa BitDogLab (baseada no microcontrolador RP2040) e o display OLED SSD1306. A comunicação entre os dispositivos é realizada por meio do protocolo I²C.
 
-Tabela de Conexões
+**Tabela de Conexões**
 <img width="637" height="358" alt="image" src="https://github.com/user-attachments/assets/dd093a6f-b9b7-4e9a-a57a-c5db43254197" />
 
 **Descrição do Circuito**
-O sensor AHT10 comunica-se com o microcontrolador via barramento I²C0, enquanto o display OLED utiliza o barramento I²C1. Ambos os módulos compartilham a mesma alimentação de 3.3 V proveniente da BitDogLab. As linhas SDA e SCL são utilizadas para transmissão de dados e sincronização, respectivamente.
-O AHT10 converte a umidade e temperatura em sinais digitais, que são lidos pelo RP2040. Em seguida, o microcontrolador envia as informações processadas ao display SSD1306 para exibição. A taxa de atualização é controlada por temporização no código (time.sleep(2)).
-
-<img width="432" height="590" alt="image" src="https://github.com/user-attachments/assets/44ed1bb1-2685-42e8-8f57-c18dd29b21bc" />
-
-
-
-
-
-
-
+-O sensor AHT10 comunica-se com o microcontrolador via barramento I²C0, enquanto o display OLED utiliza o barramento I²C1. Ambos os módulos compartilham a mesma alimentação de 3.3 V proveniente da BitDogLab. As linhas SDA e SCL são utilizadas para transmissão de dados e sincronização, respectivamente.
+-O AHT10 converte a umidade e temperatura em sinais digitais, que são lidos pelo RP2040. Em seguida, o microcontrolador envia as informações processadas ao display SSD1306 para exibição. A taxa de atualização é controlada por temporização no código (time.sleep(2)).
 
 
 ## 3. Resultados e Análise
@@ -164,6 +155,7 @@ Indique aprimoramentos possíveis e oportunidades de extensão do trabalho, incl
 ## 6. Referências
 Liste as fontes técnicas e documentações consultadas, como datasheets, manuais de aplicação, artigos ou links de bibliotecas utilizadas.  
 O formato de citação é livre, desde que contenha autor, título e origem.
+
 
 
 
