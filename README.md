@@ -165,7 +165,6 @@ Ruído e Estabilidade
 - Script: test/test_ruido.py (com filtragem por média móvel).
 - Resultados observados:
   - Variação típica: ±0.1–0.2 °C || ±1–2 % RH.
-  - Estabilização total após ~1 segundo de energização.
   - A aplicação de uma média móvel com 5 amostras reduziu flutuações (“jitter”) e melhorou a estabilidade das leituras.
 
 
